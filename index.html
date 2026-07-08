@@ -642,7 +642,7 @@ Tone: direct, board-ready, no jargon. Max 350 words. Use [PLACEHOLDER] for anyth
 
 1. REWRITE the executive summary for the mine-ops board - three tight paragraphs, plain business English, no jargon, end with one clear ask. Keep every number exactly as in the workbook and cite the source in-line as "(source: KPI dashboard)".
 
-2. INSERT a "Mine Ops Scorecard" table right under the summary - 5 rows for our headline KPIs (ROM Production, Strip Ratio, Truck Availability, Fuel Litres per BCM, TRIFR Safety). Columns: Metric · Actual · Target · Variance · RAG. Pull the values from the KPI dashboard. Use an amber header row and red / amber / green shading in the RAG cell.
+2. INSERT a "Mine Ops Scorecard" table right under the summary - 5 rows for the KPIs actually in the workbook (ROM Production (Mt), Strip Ratio (BCM/t), FOB Cash Cost (USD/t), Equipment Availability %, TRIR). Columns: Metric · Actual · Target · Variance · RAG. Pull Actual, Target, Variance and Status directly from the Targets_vs_Actual tab (columns FY26 Target, Current YTD, Variance %, Status). Use an amber header row and red / amber / green shading in the RAG cell.
 
 3. ADD a pull-quote callout box under the scorecard in amber with a 1-sentence "So what" line, big enough to catch the eye when the doc is scrolled.
 
@@ -671,7 +671,7 @@ When done, list every change you made as a numbered summary at the end of the ch
 
    Slide 1 - Cover: "Contoso Coal &amp; Resources · Q3 Mine Operations - What the GM is asking the Board to decide"
    Slide 2 - Executive summary: three headline messages, one line each, amber-accent underlines
-   Slide 3 - Where we are: a 5-row scorecard table (Metric · Actual · Target · Variance · RAG) with ROM Production, Strip Ratio, Truck Availability, Fuel L/BCM, TRIFR
+   Slide 3 - Where we are: a 5-row scorecard table (Metric · Actual · Target · Variance · RAG) with ROM Production (Mt), Strip Ratio (BCM/t), FOB Cash Cost (USD/t), Equipment Availability %, and TRIR, sourced from the Targets_vs_Actual tab
    Slide 4 - The variance story: a waterfall chart explaining FY26 Plan -&gt; drivers -&gt; FY26 Actual for ROM production tonnes, with amber bars for positives, charcoal bars for negatives, one-line "So what:" under the chart
    Slide 5 - Top 3 risks for the next 30 days across pits, each with a mitigation owner and by-when
    Slide 6 - The ask: one clear board decision, three success measures, next review date
@@ -697,44 +697,44 @@ When done, list every slide with its action-title headline in the chat so the GM
 <div class="activity">
 <div class="head"><span class="num">Task 4.3</span><span class="file">Edit with Copilot in Excel · Plan + Edit</span></div>
 <h4>One prompt · a full mine-ops dashboard on a new sheet</h4>
-<div class="prompt">You are Copilot in Excel. Ground everything on the Monthly_KPIs and Targets_vs_Actual tabs of this workbook. Use our Contoso Coal & Resources brand feel (amber + dark slate). Show your plan first (if Plan is available), then execute all of the following in order:
+<div class="prompt">You are Copilot in Excel. Ground everything on the Monthly_KPIs, Targets_vs_Actual, and Open_Issues tabs of this workbook. The available columns in Monthly_KPIs are: Location, Month, ROM Production (Mt), Strip Ratio (BCM/t), FOB Cash Cost (USD/t), Equipment Availability %, TRIR (Safety, per 200k hrs). Use ONLY those columns, do not invent Pit, Fleet, Fuel L/BCM, downtime causes, or TRIFR fields. Use our Contoso Coal &amp; Resources brand feel (amber + dark slate). Show your plan first (if Plan is available), then execute all of the following in order:
 
-1. On the source data tab, add a column called "Variance vs Target %" and fill it with the correct formula per row.
+1. On Monthly_KPIs, add a column called "Variance vs Target %" per KPI per row, calculated against the matching FY26 Target from Targets_vs_Actual.
 
 2. Apply conditional formatting to that column: red if worse than -5%, amber between -5% and 0%, green if better than +2%. Add traffic-light icons.
 
-3. Add a column "Trend (last 3 months)" with an inline sparkline per row.
+3. Add a column "Trend (last 3 months)" per KPI with an inline sparkline that shows the last 3 months of that KPI at that location.
 
-4. Convert the source data range to an Excel Table (Ctrl+T style). This gives us proper column filter drop-downs at the top of every column so the user can filter by Pit, Fleet and Month in-place, and the sparklines and conditional formatting stay in sync when new rows arrive.
+4. Convert the Monthly_KPIs range to an Excel Table (Ctrl+T style). Column filter drop-downs at the top of every column let the GM slice by Location and Month in place, and the sparklines and conditional formatting stay in sync when new rows arrive.
 
-5. Create a new sheet named "GM Dashboard - Mine Ops" and build a one-page management dashboard on it that references the source table by formula (so it updates when the user filters):
+5. Create a new sheet named "GM Dashboard - Mine Ops" and build a one-page management dashboard on it that references the source table by formula (so it updates when the GM filters):
 
    HEADER
    - Amber header band with the title
-   - Reporting period on the right, pulled from the source data
+   - Reporting period on the right, pulled from Monthly_KPIs (min and max Month)
    - Small "Last refreshed" note in dark slate
 
-   KPI SCORECARDS (top row, 5 tiles across)
-   - ROM Production (Mt), Strip Ratio (bcm/t), Truck Availability %, Fuel L/BCM, TRIFR
-   - Each tile shows: actual · target · variance · RAG traffic light · sparkline
-   - Each tile is a small cell block with a formula that reads from the source table
+   KPI SCORECARDS (top row, 5 tiles across, one per row in Targets_vs_Actual)
+   - ROM Production (Mt), Strip Ratio (BCM/t), FOB Cash Cost (USD/t), Equipment Availability %, TRIR
+   - Each tile shows: Actual (Current YTD) · Target (FY26 Target) · Variance % · RAG traffic light (from Status) · sparkline of the last 12 months from Monthly_KPIs
+   - Each tile is a small cell block with a formula that reads from the Targets_vs_Actual and Monthly_KPIs tabs
 
    CHARTS
-   - Variance waterfall: FY26 Plan -> drivers (positive and negative) -> FY26 Actual for ROM production, with amber bars for positives and dark-slate bars for negatives
-   - Clustered column: Actual vs Target by pit, sorted worst to best, with data labels
-   - Line chart: monthly trend for the last 12 months for ROM production, with the target as a dashed reference line
-   - Pareto (column + cumulative line): top downtime causes by lost tonnes
+   - Variance waterfall: FY26 Plan to drivers (positive and negative) to FY26 Actual for ROM Production, with amber bars for positive steps and dark-slate bars for negative steps. Derive drivers from the variance across Locations.
+   - Clustered column: Actual vs Target ROM Production by Location, sorted worst to best, with data labels
+   - Line chart: monthly trend for the last 12 months for ROM Production across all Locations, with the FY26 Target as a dashed reference line
+   - Clustered column: TRIR by Location vs FY26 TRIR target, red for above target
 
-   CALLOUTS (bottom)
-   - "Top 3 issues today" - dark-slate box, three bullets pulled from the worst variances
-   - "Top 3 actions for tomorrow" - amber box, three bullets that pair each issue with a concrete next step
+   CALLOUTS (bottom, sourced from the Open_Issues tab)
+   - "Top 3 issues today" - dark-slate box, three bullets pulled from Open_Issues rows with Impact = High (fall back to Medium if fewer than three), showing Issue plus Location plus Due
+   - "Top 3 actions for tomorrow" - amber box, three bullets pairing each issue with its Owner and Due date
    - One-line "So what:" summary above the callouts, naming the single biggest risk and the owner
 
 6. Freeze the header row of the dashboard so it stays visible when the GM scrolls.
 
-7. On the dashboard sheet, add a text box in the bottom right with a link back to the source data table labelled "Open source data · use column filters to slice by Pit, Fleet and Month".
+7. On the dashboard sheet, add a text box in the bottom right with a link back to the Monthly_KPIs table labelled "Open source data · use column filters to slice by Location and Month".
 
-Do not ask any clarifying questions - proceed. When done, list every change you made as a numbered summary at the end of the chat so the GM can review before saving.<button class="copy" onclick="cp(this)">Copy</button></div>
+Do not ask any clarifying questions and do not skip steps because of missing fields, everything requested is already in the workbook. When done, list every change you made as a numbered summary at the end of the chat so the GM can review before saving.<button class="copy" onclick="cp(this)">Copy</button></div>
 <div class="callout"><b>Closing line for the audience:</b> "One prompt. Copilot built a dashboard sheet with 5 KPI scorecards, 4 charts, 3 slicers, RAG bands, sparklines and next-step callouts - grounded on the same workbook that came out of Ex2. No formulas, no VBA, no add-ins."</div>
 <div class="callout warn"><b>Reality check on Copilot in Excel:</b> formulas, conditional formatting, sparklines, table filters and chart types (column, line, waterfall, Pareto) are the reliable parts. Slicers wired across multiple charts are <b>not</b> something Copilot Edit produces end-to-end today - that is why this prompt uses a Table with column filter drop-downs instead, which the GM can actually use straight away. If a chart comes back as the wrong type, follow up with: <i>"Redo the variance chart on the dashboard as a proper waterfall - plan → drivers → actual - with amber for positive steps and dark slate for negative steps."</i></div>
 </div>
