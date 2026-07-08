@@ -541,58 +541,52 @@ Start with a header: Daily briefing – Day, Date. Follow with a sub-header stat
 <div class="callout good"><b>Follow along if you have Cowork enabled.</b> If not, sit with us for the walkthrough and try it later in your own tenant. One prompt drives analysis, Word summary, executive email draft, meeting invite, live HTML dashboard, then the BCG-style deck. Copilot shows its plan first, you edit any step, and it pauses before sending email or scheduling.</div>
 <div class="callout" data-ihh-showcase="1" style="background:#fef3c7;border-color:#f59e0b"><b>Cowork is a paid Microsoft 365 Copilot feature.</b> If you have it, follow along. If not, watch this run - the prompts below are ready to copy for later.</div>
 <div class="card">
-<p class="lead">Open <b>Microsoft 365 Copilot Chat</b> and switch to <b>Cowork</b>. Reference <code>02 Contoso_KPI_Dashboard.xlsx</code> with <code>/</code>. Cowork shows its plan first, you edit any step, and it pauses before sending email or scheduling.</p>
+<p class="lead">Open <b>Microsoft 365 Copilot Chat</b> and switch to <b>Cowork</b>. Reference <code>02 Contoso_KPI_Dashboard.xlsx</code> and <code>05 Contoso_Strategic_Memo.docx</code> with <code>/</code>. One prompt, six artefacts. Cowork shows its plan first, you edit any step, and it pauses before sending email or scheduling.</p>
 <div class="activity">
-<div class="head"><span class="num">Task 2</span><span class="file">👥 Cowork · multi-step</span></div>
-<h4>Five outputs. One HTML dashboard.</h4>
-<div class="prompt">Cowork — close the quarter for General Manager · Mine Operations at Contoso Coal &amp; Resources. Use /02 Contoso_KPI_Dashboard.xlsx as the source of truth.
+<div class="head"><span class="num">Task 2</span><span class="file">👥 Cowork · one prompt · six artefacts · full quarter close</span></div>
+<h4>Everything in one Cowork run: analysis, memo, email, meeting, HTML dashboard, and the BCG-style deck with waterfall</h4>
+<div class="prompt">Cowork, close the quarter for General Manager · Mine Operations at Contoso Coal &amp; Resources in ONE go. Ground everything on /02 Contoso_KPI_Dashboard.xlsx and /05 Contoso_Strategic_Memo.docx. Show your plan first, let me edit any step, and pause before sending the email or scheduling the meeting.
 
 Do all of the following, in order:
 
-1. Analyse the Monthly_KPIs and Targets_vs_Actual tabs. For each KPI, identify the best and worst locations and the variance vs FY26 target. Flag any 🔴 locations.
+1. ANALYSIS. Read the Monthly_KPIs and Targets_vs_Actual tabs. For each KPI, identify the best and worst locations and the variance vs FY26 target. Flag any red locations. Return a short bullet list I can walk into a meeting with.
 
-2. Draft a 1-page Word document "Contoso Coal Q-End GM Summary" — top 3 wins, top 3 issues, 90-day action plan with owners. Save it to OneDrive.
+2. WORD MEMO. Draft a 1-page Word document "Contoso Coal Q-End GM Summary" with top 3 wins, top 3 issues, and a 90-day action plan with owners. Ground every number on the workbook. Save as /Contoso_Coal_Q_End_GM_Summary.docx.
 
-3. Draft an executive email from the GM to the Operating Committee with a headline and a link to the Word doc.
+3. POWERPOINT DECK. Draft an 8-slide FY26 quarter-close deck in a BCG / McKinsey "one message per slide" style, grounded on the memo AND the workbook. Action-title headlines (state the conclusion, not the topic). Max 25 words per body. Keep it black and white with our brand accent for emphasis only.
+   Slide 1 Cover, "Contoso Coal &amp; Resources, Quarter Close Review"
+   Slide 2 Executive summary, three headline messages, one line each
+   Slide 3 Where we are, top KPIs vs FY26 target, simple table
+   Slide 4 What is working, two proof points with numbers
+   Slide 5 What is not working, two risks with numbers and root cause
+   Slide 6 What we will do, three actions with owner and by-when
+   Slide 7 Ask of the board, one clear ask
+   Slide 8 Appendix, data sources
+   Save as /Contoso_Coal_Q_End_Deck.pptx.
 
-4. Schedule a 30-minute Operating Committee review for Wednesday next week at 10:00 AM.
+4. WATERFALL CHART. On the "Where we are" slide, add a waterfall chart that explains the variance between FY26 plan and FY26 actual for our headline KPI. Start with "Plan", show each driver as a positive or negative step, and end at "Actual". Use our brand accent for positive steps, dark slate for negative steps, neutral grey for the totals. Add data labels in absolute numbers. Write a one-line takeaway underneath starting with "So what:".
 
-5. Generate a self-contained HTML KPI dashboard titled "Production · Strip Ratio · HSE Dashboard":
- - Brand-coloured header band
- - 5 KPI scorecards across the top (one per KPI in Targets_vs_Actual, with RAG icons)
- - Inline mini-table per location showing the last 3 months' trend
- - "Top issue" and "Top action" callout boxes at the bottom
- - All CSS inline, no JavaScript, mobile-friendly
- - Save as Dashboard.html to OneDrive
+5. HTML DASHBOARD. Generate a self-contained /Contoso_Coal_KPI_Dashboard.html titled "Production · Strip Ratio · HSE Dashboard":
+   - Brand-coloured header band
+   - 5 KPI scorecards across the top, one per KPI in Targets_vs_Actual, with RAG icons
+   - Inline mini-table per location showing the last 3 months' trend
+   - "Top issue" and "Top action" callout boxes at the bottom
+   - All CSS inline, no external JavaScript, no CDN, no network calls, must open offline from OneDrive
+   - Mobile-friendly.
 
-Stop and confirm before sending the email or scheduling the meeting.<button class="copy" onclick="cp(this)">Copy</button></div>
-<div class="callout"><b>Closing line for the audience:</b> "Cowork showed its plan first. You edited it. It paused before any external action. It returned five artefacts you own — including the dashboard you can put on a screen tomorrow morning."</div>
-</div>
-</div>
-<div class="card">
-<h3>2.B - Turn the memo into a board-ready deck (BCG / McKinsey style)</h3>
-<p class="lead">Same cowork session. Once the Word summary is signed off, open <b>PowerPoint</b> for the web, start from your corporate template (.potx) so brand fonts and colours are inherited, then open the Copilot pane.</p>
-<div class="activity">
-<div class="head"><span class="num">Task 2.B</span><span class="file">PowerPoint Copilot - Draft from your memo</span></div>
-<h4>One prompt. Eight slides. Consulting-firm style.</h4>
-<div class="prompt">Draft an 8-slide FY26 quarter-close deck in a BCG / McKinsey "one message per slide" style, for the General Manager - Coal Operations at Contoso Coal &amp; Resources. Ground everything on /05 Contoso_Strategic_Memo.docx and /02 Contoso_KPI_Dashboard.xlsx.
+6. EMAIL. Draft an executive email in Outlook from me (GM Mine Operations) to the Operating Committee. Subject: "Quarter close review, decisions needed". Body: two-line headline (top win, top issue), a "Top 3 wins" bullet list, a "Top 3 issues" bullet list, an "Ask" line ("please review the attached memo, deck, and dashboard, and confirm attendance at the Operating Committee review"). Attach the memo, the deck, and the HTML dashboard. STOP, show me the draft for approval before sending.
 
-Structure:
-1. Cover - "Contoso Coal &amp; Resources - Quarter Close Review"
-2. Executive summary - three headline messages, one line each
-3. Where we are - top KPIs vs FY26 target (use a simple table)
-4. What is working - two proof points with numbers
-5. What is not working - two risks with numbers and root cause
-6. What we will do - three actions, each with owner and by-when
-7. Ask of the board - one clear ask
-8. Appendix - data sources
+7. MEETING. Draft a 30-minute Outlook meeting invite: title "Operating Committee, Quarter Close Review · Contoso Coal &amp; Resources". Time: Wednesday next week 10:00 to 10:30 Jakarta time. Attendees: Operating Committee members plus me as organiser. Body: three-line agenda ("1. Confirm the top 3 wins and top 3 issues", "2. Approve the 90-day action plan and owners", "3. Sign off the Ask of the Board"), attach the memo and the deck. STOP, show me the invite for approval before scheduling.
 
-Rules: one message per slide, action-title headlines (not topic titles), no more than 25 words per slide body, keep it black and white with our brand accent for emphasis only.<button class="copy" onclick="cp(this)">Copy</button></div>
-</div>
-<div class="activity">
-<div class="head"><span class="num">Task 2.C</span><span class="file">Edit with Copilot in PowerPoint - Add a waterfall</span></div>
-<h4>Polish the KPI slide with a chart Copilot builds for you</h4>
-<div class="prompt">On the "Where we are" slide, add a waterfall chart that explains the variance between FY26 plan and FY26 actual for our headline KPI. Start with "Plan", show each driver as a positive or negative step, and end at "Actual". Use our brand accent for positive steps, dark slate for negative steps, and neutral grey for the totals. Add data labels in absolute numbers. Then write a one-line takeaway underneath starting with "So what:".<button class="copy" onclick="cp(this)">Copy</button></div>
+Rules for the whole run:
+- Show your plan first before you execute step 1. Wait for my approval.
+- After each step, confirm what was produced and where it was saved.
+- Same numbers everywhere. If the memo shows a number different to the deck, stop and flag it.
+- Never invent a number. Use [PLACEHOLDER] if the source does not confirm it.
+- HTML dashboard must be one file with no dependencies.
+- Pause before sending the email or scheduling the meeting.<button class="copy" onclick="cp(this)">Copy</button></div>
+<div class="callout"><b>Closing line for the audience:</b> "One Cowork prompt. Seven things done: analysis, memo, deck, waterfall chart, offline HTML dashboard, executive email drafted, and the Operating Committee review booked. Two human checkpoints. Nothing sent without my green light. Same numbers across every artefact."</div>
+<div class="callout warn"><b>Reality check on Cowork multi-artefact runs:</b> Cowork can plan, hand off between apps, produce Word + PowerPoint + HTML, draft the email and draft the meeting in one session. It WILL pause before sending or scheduling, that pause is a feature. What varies is quality per surface: expect to review the PowerPoint waterfall (Copilot often gets the total step wrong, correct it inline) and the HTML dashboard (keep it vanilla, do NOT let Cowork add Chart.js or a CDN because the file must open offline).</div>
 </div>
 </div>
 </section><div class="lab-nav-ihh"><button class="secondary" data-go="ex1">← Daily Briefing</button><button data-go="ex3">Next: Market Intelligence →</button></div></div><div class="view-ihh" id="view-ex3"><section id="ex3">
